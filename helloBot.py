@@ -5,6 +5,7 @@ import time
 import re
 from slackclient import SlackClient
 import AppConf
+import Constant
 
 class SlackBotMain:
     sc = SlackClient(AppConf.token)
@@ -27,6 +28,23 @@ class SlackBotMain:
     def create_message(self, data):
         if re.search(u"(.*帰ります.*|.*帰宅.*)", data["text"]) is not None:
             return "<@" + data["user"] + ">" + u"お疲れ様。気をつけて帰ってください。:wink:"
+        
+        if re.search(u".*dbmain.*", data["text"]) is not None:
+            return "<@" + data["user"] + ">main系DBですね。:wink:" + "\n" + "```" + Constant.dbMainStr + "```\n\n"\
+                    + "こちらで、よろしいですか。:relieved:"
+
+        if re.search(u".*dbres.*", data["text"]) is not None:
+            return "<@" + data["user"] + ">res系DBですね。:wink:" + "\n" + "```" + Constant.dbResStr + "```\n\n"\
+                    + "こちらで、よろしいですか。:relieved:"
+
+        if re.search(u".*dbmroo.*", data["text"]) is not None:
+            return "<@" + data["user"] + ">search系DBですね。:wink:" + "\n" + "```" + Constant.dbMroongaStr + "```\n\n"\
+                    + "こちらで、よろしいですか。:relieved:"
+        
+        if re.search(u".*dbcass.*", data["text"]) is not None:
+            return "<@" + data["user"] + ">search系DBですね。:wink:" + "\n" + "```" + Constant.dbCassandraStr + "```\n\n"\
+                    + "こちらで、よろしいですか。:relieved:"
+
 
 sbm = SlackBotMain()
             
