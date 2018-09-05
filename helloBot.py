@@ -16,17 +16,17 @@ class SlackBotMain:
 
                 if len(data) > 0:
                     for item in data:
-                        SlackBotMain.sc.rtm_send_message("shudo-memo", self.create_message(item))
+                        if "type" in item.keys():
+                            if item["type"] == "message":
+                                SlackBotMain.sc.rtm_send_message(item["channel"], self.create_message(item))
 
-                    time.sleep(1)
+                time.sleep(1)
         else:
             print("Connection Failed, invalid token?")
 
     def create_message(self, data):
-        if "type" in data.keys():
-            if data["type"] == "message":
-                if re.search(u"(.*帰ります.*|.*帰宅.*)", data["text"]) is not None:
-                    return "<@" + data["user"] + ">" + u"お疲れ様。気をつけて帰ってください。:wink:"
+        if re.search(u"(.*帰ります.*|.*帰宅.*)", data["text"]) is not None:
+            return "<@" + data["user"] + ">" + u"お疲れ様。気をつけて帰ってください。:wink:"
 
 sbm = SlackBotMain()
             
