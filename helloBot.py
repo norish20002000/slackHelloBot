@@ -29,6 +29,9 @@ class SlackBotMain:
         if re.search(u"(.*帰ります.*|.*帰宅.*)", data["text"]) is not None:
             return "<@" + data["user"] + ">" + u"お疲れ様。気をつけて帰ってください。:wink:"
         
+        if re.search(u"(.*戻ります.*|.*帰社.*)", data["text"]) is not None:
+            return "<@" + data["user"] + ">" + u"ご連絡ありがとうございます。気をつけて戻ってください。:wink:"
+        
         if re.search(u".*dbmain.*", data["text"]) is not None:
             return "<@" + data["user"] + ">main系DBですね。:wink:" + "\n" + "```" + Constant.dbMainStr + "```\n\n"\
                     + "こちらで、よろしいですか。:relieved:"
@@ -42,7 +45,7 @@ class SlackBotMain:
                     + "こちらで、よろしいですか。:relieved:"
         
         if re.search(u".*dbcass.*", data["text"]) is not None:
-            return "<@" + data["user"] + ">search系DBですね。:wink:" + "\n" + "```" + Constant.dbCassandraStr + "```\n\n"\
+            return "<@" + data["user"] + ">NoSqlのcassandraですね。:wink:" + "\n" + "```" + Constant.dbCassandraStr + "```\n\n"\
                     + "こちらで、よろしいですか。:relieved:"
 
 
