@@ -52,5 +52,9 @@ class SlackBotMain:
             return "<@" + data["user"] + ">NoSqlのmemcacheですね。:wink:" + "\n" + "```" + Constant.dbMemcacheStr + "```\n\n"\
                     + "こちらで、よろしいですか。:relieved:"
 
+        if re.search(u".*vmaddress.*", data["text"], re.IGNORECASE) is not None:
+            return "<@" + data["user"] + ">皆さんご使用のVMのアドレスですね。:wink:" + "\n" + "```" + Constant.vmAddressStr + "```\n\n"\
+                    + "こちらで、よろしいですか。:relieved:"
+
 sbm = SlackBotMain()
             
