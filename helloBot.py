@@ -12,7 +12,7 @@ class SlackBotMain:
 
     def __init__(self):
         if SlackBotMain.sc.rtm_connect():
-            print(SlackBotMain.sc.user)
+            # print(SlackBotMain.sc.user)
             # print(SlackBotMain.sc.server.login_data['self']['id'])
             while True:
                 data = SlackBotMain.sc.rtm_read()
