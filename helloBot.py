@@ -18,7 +18,7 @@ class SlackBotMain:
                 data = SlackBotMain.sc.rtm_read()
 
                 if len(data) > 0:
-                    print(data)
+                    # print(data)
                     for item in data:
                         if "type" in item.keys():
                             if item["type"] == "message":
