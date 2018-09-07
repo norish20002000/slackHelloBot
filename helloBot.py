@@ -29,7 +29,7 @@ class SlackBotMain:
             print("Connection Failed, invalid token?")
 
     def create_message(self, data):
-        if re.search(u"(.*帰ります.*|.*帰宅.*|.*帰ろ.*)", data["text"]) is not None:
+        if re.search(u"(.*帰ります.*|.*帰宅.*|.*帰ろ.*|.*帰る.*)", data["text"]) is not None:
             return "<@" + data["user"] + ">" + u"お疲れ様。気をつけて帰ってください。:wink:"
         
         if re.search(u"(.*もどります.*|.*戻ります.*|.*帰社.*)", data["text"]) is not None:
