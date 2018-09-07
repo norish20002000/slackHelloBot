@@ -12,10 +12,13 @@ class SlackBotMain:
 
     def __init__(self):
         if SlackBotMain.sc.rtm_connect():
+            print(SlackBotMain.sc.user)
+            # print(SlackBotMain.sc.server.login_data['self']['id'])
             while True:
                 data = SlackBotMain.sc.rtm_read()
 
                 if len(data) > 0:
+                    print(data)
                     for item in data:
                         if "type" in item.keys():
                             if item["type"] == "message":
@@ -31,6 +34,9 @@ class SlackBotMain:
         
         if re.search(u"(.*もどります.*|.*戻ります.*|.*帰社.*)", data["text"]) is not None:
             return "<@" + data["user"] + ">" + u"ご連絡ありがとうございます。気をつけて戻ってください。:wink:"
+        
+        if re.search(u".*おはよう.*", data["text"]) is not None:
+            return "<@" + data["user"] + ">" + u"おはようございます。今日も一日頑張ってください。:wink:"
         
         if re.search(u".*dbmain.*", data["text"], re.IGNORECASE) is not None:
             return "<@" + data["user"] + ">main系DBですね。:wink:" + "\n" + "```" + Constant.dbMainStr + "```\n\n"\
